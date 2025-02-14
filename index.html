@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali&display=swap" rel="stylesheet"> <!-- เพิ่มฟอนต์ Mali -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fce0f0;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: #f5a8c1;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 2px solid #e1c4d3;
+        }
+
+        header h1 {
+            font-size: 3em;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            margin: 0;
+            transition: transform 0.3s ease;
+        }
+
+        header h1:hover {
+            transform: scale(1.1);
+        }
+
+        .content {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .show-message-btn {
+            position: relative;
+            padding: 12px 25px;
+            background-color: #f5a8c1;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-bottom: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .show-message-btn:hover {
+            background-color: #d97dba;
+        }
+
+        .message-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            text-align: center;
+            max-width: 80%;
+            margin: 20px auto;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .message-container.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .message {
+            font-family: 'Mali', cursive; /* ใช้ฟอนต์ Mali */
+            font-size: 1.5em;
+            color: #d97dba;
+            font-weight: 300;
+            margin: 15px 0;
+            line-height: 1.5;
+            border: 2px solid #d97dba;
+            border-radius: 15px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeInMessage 2s ease-in-out forwards;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .gallery-box {
+            width: 180px;
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            position: absolute;
+            transition: opacity 1s ease-in-out;
+            display: block;
+        }
+
+        .gallery-box img.active {
+            opacity: 1;
+        }
+
+        .music-player {
+            margin-top: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .music-player img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+
+        .music-player img:hover {
+            transform: scale(1.05);
+        }
+
+        .music-player audio {
+            position: absolute;
+            top: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeInMessage {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            background-color: #f5a8c1;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 1em;
+        }
+
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            .message {
+                font-size: 1.4em;
+            }
+
+            .show-message-btn {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            .gallery-box {
+                width: 150px;
+                height: 150px;
+            }
+
+            .music-player img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Happy Valentine's Day Nakubb <3</h1>
+    </header>
+
+    <div class="content">
+        <!-- Button to show message -->
+        <button class="show-message-btn" id="showMessageBtn" onclick="toggleMessage()">Click to 💌</button>
+
+        <!-- Hidden message and images -->
+        <div class="message-container" id="messageContainer">
+            <p class="message" id="message">"Valentine's day เค้าไม่มีอะไรให้เยย แต่เค้าจะบอกว่า.. เค้ารักเธอมากๆ วาเลนไทน์ปีนี้เค้ารู้สึกมันพิเศษมากกว่าปีอื่นๆ เป็นปีที่เค้ามีเธออยู่ด้วย เธอคือคนที่ทำให้อะไรหลายๆอย่างในชีวิตเค้าที่เหมือนขาดไปลงตัวมากขึ้น เค้ามีความสุขมากๆที่มีเธออยู่ข้างๆ แล้วเค้าก็จะพยายามรักษาความสัมพันธ์ของเราให้อยู่แบบนี้ไปเรื่อยๆเลยน้าา ทั้งปีนี้ ปีหน้า และปีต่อๆไป เค้าจะอยู่ทุกวันสำคัญของเธอ แล้วก็จะให้เธออยู่ทุกวันสำคัญของเค้าด้วย อีกไม่กี่เดือนแล้วที่เราจะได้เจอกัน เค้ารู้สึกตื่นเต้น ดีใจ หลายอารมณ์มากๆ เป็นครั้งแรกที่เค้ารู้สึกอะไรแบบนี้ และมันดีมากๆ หลังจากที่ได้เจอกันแล้วเค้าคิดว่าหลายอย่างมันจะดีขึ้นจริงๆ จะได้เที่ยวกับเธอ ได้กอดเธอ ได้ให้เธอกอด ทำอะไรหลายๆอย่างด้วยกัน มีรูปด้วยกันมากกว่านี้ เค้ารอให้ถึงวันนั้นนะ" เรื่องมหาลัยตอนนี้เหมือนที่เค้าบอกเลย เค้าอยากให้เธอโฟกัสแค่ตัวเอง โฟกัสแค่สิ่งที่ตัวเองต้องทำ เธอเก่งมากๆอยู่แล้ว พยายามอีกหน่อยนะอ้วร เค้าเชื่อว่าเธอทำได้ จะเข้าที่ไหน คณะอะไร ตอนนี้หลายอย่างเปิดกว้างมากขึ้น ทั้งแม่กับพ่อ เค้าอยากให้เธอค่อยๆคิด และตัดสินใจดีๆ เป็นครั้งสุดท้ายที่จะตัดสินว่าเธอจะไปทางไหน และตัดสินใจด้วยตัวเองนะ ชีวิตเธอจะเป็นยังไงขึ้นอยู่ที่เธอเองแย้ว ตั้งใจทำในสิ่งที่ต้องทำตอนนี้ด้วยนะ keep fighting. ฮึบบบ!! ขอบคุณที่เข้ามาในชีวิตและทำให้เค้ามีความสุขนะครับ ღ </p>
+            <!-- Gallery of images -->
+            <div class="gallery">
+                <div class="gallery-box" id="gallery1">
+                    <img src="IMG_20240726_160522_367.jpg" class="active" alt="Image 1">
+                    <img src="IMG_20250213_112120.jpg" alt="Image 2">
+                    <img src="IMG_20250213_112140.jpg" alt="Image 3">
+                    <img src="IMG_20250213_112158.jpg" alt="Image 4">
+                </div>
+                <div class="gallery-box" id="gallery2">
+                    <img src="IMG_20250213_112242.jpg" class="active" alt="Image 5">
+                    <img src="IMG_20250213_112302.jpg" alt="Image 6">
+                    <img src="IMG_20250213_112323.jpg" alt="Image 7">
+                    <img src="IMG_20250213_112341.jpg" alt="Image 8">
+                </div>
+                <div class="gallery-box" id="gallery3">
+                    <img src="IMG_20250213_112357.jpg" class="active" alt="Image 9">
+                    <img src="IMG_20250213_112428.jpg" alt="Image 10">
+                    <img src="Screenshot_2025-02-13-11-11-44-396_com.miui.videoplayer-edit.jpg" alt="Image 11">
+                    <img src="Screenshot_2025-02-13-11-28-20-832_com.miui.videoplayer-edit.jpg" alt="Image 12">
+                </div>
+            </div>
+
+            <!-- Music player -->
+            <div class="music-player">
+                <img src="beabadoobe ★ core.jfif" alt="Record" onclick="playMusic()">
+                <audio id="audioPlayer" controls style="display:none;">
+                    <source src="spotidownloader.com - Photograph - Ed Sheeran.mp3" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Thank you for making today a day full of love</p>
+    </footer>
+
+    <script>
+        // Function to show/hide message
+        function toggleMessage() {
+            var messageContainer = document.getElementById("messageContainer");
+            var button = document.getElementById("showMessageBtn");
+            messageContainer.classList.toggle("show");
+
+            // Hide button after click
+            button.style.display = "none";
+        }
+
+        // Function to change images in each gallery
+        function changeImages(galleryId) {
+            var gallery = document.getElementById(galleryId);
+            var images = gallery.getElementsByTagName('img');
+            var currentIndex = 0;
+
+            function changeImage() {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+            }
+
+            setInterval(changeImage, 3000); // Change image every 3 seconds
+        }
+
+        // Call image change function for each gallery
+        changeImages("gallery1");
+        changeImages("gallery2");
+        changeImages("gallery3");
+
+        // Function to play music on record click
+        function playMusic() {
+            var audio = document.getElementById("audioPlayer");
+            audio.style.display = "block";  // Show the audio player when clicked
+            audio.play(); // Play the audio
+        }
+    </script>
+</body>
+</html>
